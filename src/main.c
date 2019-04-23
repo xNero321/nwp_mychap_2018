@@ -49,7 +49,7 @@ int get_option(struct option op[], char **av, packet_t *core, int ac)
 int get_flags_from_switch(packet_t *core, int f)
 {
 	switch(f) {
-		case 't': printf("Le flag t est trouvé.\n");
+		case 't': printf("le flag t est trouvé.\n");
 			break;
 		case 'p': printf("le flag p est trouvé.\n");
 			break;
