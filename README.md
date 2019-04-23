@@ -13,6 +13,7 @@ A simple Challenge Handshake Authentication Protocol
 
 ## Usage
 	USAGE: ./client -t <target> -p <port> -P <password>
+
         -t --target	target can be the hostname or the IPv4
 	-p --port	defines the binded port
 	-P --password	defines the password sent to the server
