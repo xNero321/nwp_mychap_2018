@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: gcc
+
+    steps:
+      - checkout
+
+      - run:
+          name: Build
+          command: gcc src/main.c
+      - run:
+          name: Checking artifact
+          command: ls a.out
+      - run:
+          name: Executing artifact
+          command: ./a.out
