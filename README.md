@@ -14,9 +14,14 @@ A simple Challenge Handshake Authentication Protocol
 ## Usage
 	USAGE: ./client -t <target> -p <port> -P <password>
 
-	-t --target	target can be the hostname or the IPv4
-	-p --port	defines the binded port
-	-P --password	defines the password sent to the server
+		-t --target	target can be the hostname or the IPv4
+		-p --port	defines the binded port
+		-P --password	defines the password sent to the server
+
+	DESCRIPTION:
+		
+		This project goal is to create a client able to send packets from a raw socket
+
 ## Codacy analysis
 
 This project use Codacy analysis, to see the project analysis
