@@ -12,8 +12,10 @@ A simple Challenge Handshake Authentication Protocol
 - GNU Make 4.2.1
 
 ## Usage
-	USAGE: ./arcade <library_path>
-        library_path    is the choice of the library you want to use to start the program
+	USAGE: ./client -t <target> -p <port> -P <password>
+        -t --target	target can be the hostname or the IPv4
+	-p --port	defines the binded port
+	-P --password	defines the password sent to the server
 ## Codacy analysis
 
 This project use Codacy analysis, to see the project analysis
