@@ -9,10 +9,10 @@ jobs:
 
       - run:
           name: Build
-          command: gcc src/main.c
+          command: make re
       - run:
           name: Checking artifact
-          command: ls a.out
+          command: ls client
       - run:
           name: Executing artifact
-          command: ./a.out
+          command: ./client -t localhost -p 1337 -P epitech
