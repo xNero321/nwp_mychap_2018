@@ -39,7 +39,7 @@ int get_option(struct option op[], char **av, packet_t *core, int ac)
 {
 	int l_id = 0;
 	
-	for (int f = 0; f = getopt_long_only(ac, av, "t:p:P", op,
+	for (int f = 0; f = getopt_long_only(ac, av, "t:p:P:", op,
 	&l_id);) {
 		if (get_flags_from_switch(core, f) == -1)
 			return (optind);

@@ -16,6 +16,7 @@
 		char *port;
 		char *password;
 	}packet_t;
+	
 	void init_packet(packet_t *core);
 	int get_option(struct option op[], char **av, packet_t *core, int ac);
 	int get_flags_from_switch(packet_t *core, int f);
