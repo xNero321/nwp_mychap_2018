@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <netinet/in.h>
+#include <string.h>
 #include <arpa/inet.h>
 #include <stdint.h>
 #include "packet.h"
@@ -36,4 +37,17 @@ void set_ip_header(struct iphdr *iph, unsigned short size,
 	iph->check = 0;
 	iph->daddr = d_addr;
 	iph->saddr = s_addr;
+}
+
+int prepare_packet_sending(packet_ipv4_t *packet, packet_t *core, int sock)
+{
+	fill_info_socket_server(core);
+	set_udp_header(&packet->udp, core->port, core->cin.sin_port,
+	PAYLOAD_SIZE);
+	set_ip_header(&packet->ip, PAYLOAD_SIZE, core->sin.sin_addr.s_addr,
+	core->cin.sin_addr.s_addr);
+	memmove(packet->payload, "client hello", strlen("client hello"));
+	if (sendto(sock, packet, sizeof(*packet), 0,
+		(struct sockaddr *)&(core->sin), sizeof(core->sin)) < 0)
+		perror("dommage");
 }

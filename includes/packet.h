@@ -50,5 +50,6 @@
 		unsigned short size);
 	void set_ip_header(struct iphdr *iph, unsigned short size,
 		uint32_t d_addr, uint32_t s_addr);
+	int prepare_packet_sending(packet_ipv4_t *packet, packet_t *core, int sock);
 
 #endif

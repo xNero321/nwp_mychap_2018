@@ -12,7 +12,6 @@
 #include <netinet/udp.h>
 #include <netinet/ip.h>
 #include <stdint.h>
-#include <string.h>
 #include <netdb.h>
 #include "packet.h"
 
@@ -32,15 +31,7 @@ int socket_init(packet_t *core, packet_ipv4_t *op4)
 		exit(84);
 	}
 	printf("Ip adress = %s\n", hostname->h_name);
-	fill_info_socket_server(core);
-	set_udp_header(&packet->udp, core->port, core->cin.sin_port,
-	PAYLOAD_SIZE);
-	set_ip_header(&packet->ip, PAYLOAD_SIZE, core->sin.sin_addr.s_addr,
-	core->cin.sin_addr.s_addr);
-	memmove(packet->payload, "client hello", strlen("client hello"));
-	if (sendto(sock, packet, sizeof(*packet), 0,
-		(struct sockaddr *)&(core->sin), sizeof(core->sin)) < 0)
-		perror("dommage");
+	prepare_packet_sending(packet, core, sock);
 	return (0);
 }
 
