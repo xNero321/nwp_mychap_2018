@@ -26,8 +26,10 @@ int main(int ac, char **av)
 		printf("Error: Arguments are not right.");
 		exit(84);
 	}
-	printf("target = %s, port = %d, password = %s", core->target, core->port,
-	core->password);
+	if (check_args(core) == 84) {
+		printf("Error: Arguments are not valid.\n");
+		exit(84);
+	}
 	socket_init(core, adr4);
 	return (0);
 }
@@ -37,6 +39,13 @@ void init_packet(packet_t *core)
 	core->target = NULL;
 	core->port = 0;
 	core->password = NULL;
+}
+
+int check_args(packet_t *core)
+{
+	if (core->target != NULL && core->port > 0 && core->password != NULL)
+		return (1);
+	return (84);
 }
 
 int get_option(struct option op[], char **av, packet_t *core, int ac)
