@@ -20,20 +20,21 @@
 	#define ERROR_FLAG "Error: Flag non approprié.\n"
 	#define ERROR_RAWSOCKET "Error: Failed to create raw socket.\n"
 	#define ERROR_GETSOCKNAME "Error: getsockname() failed.\n"
+	#define PAYLOAD_SIZE 1024
 	typedef struct packet_s
 	{
 		char *target;
 		int port;
 		char *password;
+		struct sockaddr_in sin;
+		struct sockaddr_in cin;
 	}packet_t;
 	
 	typedef struct packet_ipv4
 	{
 		struct iphdr ip;
 		struct udphdr udp;
-		char payload[256];
-		struct sockaddr_in sin;
-		struct sockaddr_in cin;
+		char payload[PAYLOAD_SIZE];
 	}packet_ipv4_t;
 	
 	void error(char *str);
@@ -43,7 +44,8 @@
 	int get_flags_from_switch(packet_t *core, int f);
 	int socket_init(packet_t *core, packet_ipv4_t *op4);
 	void set_socket_opt(int sock);
-	int get_info_socket(int sock, packet_ipv4_t *packet);
+	int fill_info_socket_server(packet_t *core);
+	int get_info_socket_client(int sock, packet_t *core);
 	void set_udp_header(struct udphdr *udph, uint16_t s_port, uint16_t d_port,
 		unsigned short size);
 	void set_ip_header(struct iphdr *iph, unsigned short size,

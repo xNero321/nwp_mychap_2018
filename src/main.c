@@ -14,7 +14,7 @@ int main(int ac, char **av)
 {
 	packet_t *core = malloc(sizeof(packet_t));
 	packet_ipv4_t *adr4 = malloc(sizeof(packet_ipv4_t));
-	
+
 	init_packet(core);
 	struct option op[] = {
 		{"target", required_argument, 0, 't'},
@@ -47,7 +47,7 @@ int check_args(packet_t *core)
 int get_option(struct option op[], char **av, packet_t *core, int ac)
 {
 	int l_id = 0;
-	
+
 	for (int f = 0; f = getopt_long(ac, av, "t:p:P:", op,
 	&l_id);) {
 		if (get_flags_from_switch(core, f) == -1)

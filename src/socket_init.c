@@ -25,21 +25,37 @@ int socket_init(packet_t *core, packet_ipv4_t *op4)
 	if (sock < 0)
 		error(ERROR_RAWSOCKET);
 	set_socket_opt(sock);
-	get_info_socket(sock, packet);
+	get_info_socket_client(sock, core);
 	hostname = gethostbyname(core->target);
 	if (hostname == NULL) {
 		printf("No such hostname: '%s'\n", core->target);
 		exit(84);
 	}
 	printf("Ip adress = %s\n", hostname->h_name);
+	fill_info_socket_server(core);
+	set_udp_header(&packet->udp, core->port, core->cin.sin_port,
+	PAYLOAD_SIZE);
+	set_ip_header(&packet->ip, PAYLOAD_SIZE, core->sin.sin_addr.s_addr,
+	core->cin.sin_addr.s_addr);
+	memmove(packet->payload, "client hello", strlen("client hello"));
+	if (sendto(sock, packet, sizeof(*packet), 0,
+		(struct sockaddr *)&(core->sin), sizeof(core->sin)) < 0)
+		perror("dommage");
 	return (0);
 }
 
-int get_info_socket(int sock, packet_ipv4_t *packet)
+int fill_info_socket_server(packet_t *core)
+{
+	core->sin.sin_family = AF_INET;
+	core->sin.sin_port = htons(core->port);
+	inet_aton(core->target, &core->sin.sin_addr);
+}
+
+int get_info_socket_client(int sock, packet_t *core)
 {
 	int sa_len;
-	
-	if (getsockname(sock, (struct sockaddr *)&packet->cin, &sa_len) == -1)
+
+	if (getsockname(sock, (struct sockaddr *)&core->cin, &sa_len) == -1)
 		error(ERROR_GETSOCKNAME);
 	return (1);
 }
@@ -52,29 +68,4 @@ void set_socket_opt(int sock)
 	sizeof(on)) < 0)
 		error(ERROR_SOCKOPT);
 	return;
-}
-
-void set_udp_header(struct udphdr *udph, uint16_t s_port, uint16_t d_port,
-	unsigned short size)
-{
-	udph->uh_sport = s_port; // getsockname()
-	udph->uh_dport = d_port; // param port
-	udph->uh_sum = 0;
-	udph->uh_ulen = htons(sizeof(struct udphdr) + size);
-}
-
-void set_ip_header(struct iphdr *iph, unsigned short size,
-	uint32_t d_addr, uint32_t s_addr)
-{
-	iph->version = IPVERSION;
-	iph->ihl = 5;
-	iph->tos = IPTOS_LOWDELAY;
-	iph->tot_len = htons(4 + 4 * iph->ihl + size);
-	iph->id = rand();
-	iph->frag_off = 0;
-	iph->ttl = IPDEFTTL;
-	iph->protocol = SOL_UDP;
-	iph->check = 0;
-	iph->daddr = d_addr; // inet_addr(target)
-	iph->saddr = s_addr; // recup by getsockname
 }
