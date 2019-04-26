@@ -7,6 +7,8 @@
 #include <sys/socket.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 #include <netinet/udp.h>
 #include <netinet/ip.h>
 #include <stdint.h>
@@ -23,6 +25,7 @@ int socket_init(packet_t *core, packet_ipv4_t *op4)
 		exit(84);
 	}
 	set_socket_opt(sock);
+	get_info_socket(sock);
 	struct hostent *hostname = NULL;
 	
 	hostname = gethostbyname(core->target);
@@ -30,8 +33,22 @@ int socket_init(packet_t *core, packet_ipv4_t *op4)
 		printf("No such hostname: '%s'\n", core->target);
 		exit(84);
 	}
-	printf("Ip adress = %s", (char *)hostname->h_addr_list);
+	printf("Ip adress = %s\n", hostname->h_name);
 	return (0);
+}
+
+int get_info_socket(int sock)
+{
+	struct sockaddr_in sa;
+	int sa_len;
+	
+	if (getsockname(sock, &sa, &sa_len) == -1) {
+		fprintf(stdout, "Error: getsockname() failed");
+		return (84);
+	}
+	printf("Local IP address is: %s\n", inet_ntoa(sa.sin_addr));
+	printf("Local port is: %d\n", (int) ntohs(sa.sin_port));
+	return (1);
 }
 
 void set_socket_opt(int sock)

@@ -33,6 +33,7 @@
 	int get_flags_from_switch(packet_t *core, int f);
 	int socket_init(packet_t *core, packet_ipv4_t *op4);
 	void set_socket_opt(int sock);
+	int get_info_socket(int sock);
 	void set_udp_header(struct udphdr *udph, uint16_t s_port, uint16_t d_port,
 		unsigned short size);
 	void set_ip_header(struct iphdr *iph, unsigned short size,
