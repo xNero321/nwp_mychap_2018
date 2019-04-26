@@ -20,7 +20,7 @@
 	#define ERROR_FLAG "Error: Flag non approprié.\n"
 	#define ERROR_RAWSOCKET "Error: Failed to create raw socket.\n"
 	#define ERROR_GETSOCKNAME "Error: getsockname() failed.\n"
-	#define PAYLOAD_SIZE 1024
+	#define PAYLOAD_SIZE 256
 	typedef struct packet_s
 	{
 		char *target;

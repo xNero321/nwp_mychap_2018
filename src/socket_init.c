@@ -30,7 +30,6 @@ int socket_init(packet_t *core, packet_ipv4_t *op4)
 		printf("No such hostname: '%s'\n", core->target);
 		exit(84);
 	}
-	printf("Ip adress = %s\n", hostname->h_name);
 	prepare_packet_sending(packet, core, sock);
 	return (0);
 }
@@ -44,7 +43,7 @@ int fill_info_socket_server(packet_t *core)
 
 int get_info_socket_client(int sock, packet_t *core)
 {
-	int sa_len;
+	int sa_len = sizeof(core->cin);
 
 	if (getsockname(sock, (struct sockaddr *)&core->cin, &sa_len) == -1)
 		error(ERROR_GETSOCKNAME);
