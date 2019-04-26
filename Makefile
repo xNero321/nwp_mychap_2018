@@ -14,7 +14,8 @@ CFLAGS	+= -I ./includes/ \
 SRCS	=
 
 SRCS_MAIN	= ./src/main.c	\
-			./src/socket_init.c
+			./src/socket_init.c	\
+			./src/error_handling.c
 
 SRCS_TEST	=
 

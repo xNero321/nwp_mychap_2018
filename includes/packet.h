@@ -13,6 +13,13 @@
 	#include <stdint.h>
 	#include <netinet/udp.h>
 	#include <netinet/ip.h>
+	#define ERROR_SOCK "Error: getsockname() failed.\n"
+	#define ERROR_SOCKOPT "Cannot set IP_HDRINCL.\n"
+	#define ERROR_ARGS "Error: Arguments not right.\n"
+	#define ERROR_ARG "Error: Arguments are not valid.\n"
+	#define ERROR_FLAG "Error: Flag non approprié.\n"
+	#define ERROR_RAWSOCKET "Error: Failed to create raw socket.\n"
+	#define ERROR_GETSOCKNAME "Error: getsockname() failed.\n"
 	typedef struct packet_s
 	{
 		char *target;
@@ -25,15 +32,18 @@
 		struct iphdr ip;
 		struct udphdr udp;
 		char payload[256];
+		struct sockaddr_in sin;
+		struct sockaddr_in cin;
 	}packet_ipv4_t;
 	
+	void error(char *str);
 	void init_packet(packet_t *core);
 	int check_args(packet_t *core);
 	int get_option(struct option op[], char **av, packet_t *core, int ac);
 	int get_flags_from_switch(packet_t *core, int f);
 	int socket_init(packet_t *core, packet_ipv4_t *op4);
 	void set_socket_opt(int sock);
-	int get_info_socket(int sock);
+	int get_info_socket(int sock, packet_ipv4_t *packet);
 	void set_udp_header(struct udphdr *udph, uint16_t s_port, uint16_t d_port,
 		unsigned short size);
 	void set_ip_header(struct iphdr *iph, unsigned short size,

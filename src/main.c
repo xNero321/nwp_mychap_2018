@@ -22,14 +22,10 @@ int main(int ac, char **av)
 		{"password", required_argument, 0, 'P'},
 		{0, 0, 0, 0}
 	};
-	if (av[get_option(op, av, core, ac)] != NULL) {
-		printf("Error: Arguments are not right.");
-		exit(84);
-	}
-	if (check_args(core) == 84) {
-		printf("Error: Arguments are not valid.\n");
-		exit(84);
-	}
+	if (av[get_option(op, av, core, ac)] != NULL)
+		error(ERROR_ARGS);
+	if (check_args(core) == 84)
+		error(ERROR_ARG);
 	socket_init(core, adr4);
 	return (0);
 }
@@ -68,8 +64,7 @@ int get_flags_from_switch(packet_t *core, int f)
 			break;
 		case 'P': core->password = strdup(optarg);
 			break;
-		case '?': printf("Flag non approprié");
-		 	exit(84);
+		case '?': error(ERROR_FLAG);
 		case -1: return (-1);
 	}
 }
