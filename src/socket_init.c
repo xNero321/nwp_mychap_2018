@@ -30,7 +30,7 @@ int socket_init(packet_t *core, packet_ipv4_t *op4)
         printf("No such hostname: '%s'\n", core->target);
         exit(84);
     }
-    prepare_packet_sending(packet, core, sock);
+    send_first_phase(packet, core, sock);
     return (0);
 }
 

@@ -41,7 +41,7 @@ int check_args(packet_t *core)
 {
     if (core->target != NULL && core->port > 0 && core->password != NULL)
         return (1);
-        return (84);
+    return (84);
 }
 
 int get_option(struct option op[], char **av, packet_t *core, int ac)
@@ -51,7 +51,7 @@ int get_option(struct option op[], char **av, packet_t *core, int ac)
     for (int f = 0; f = getopt_long(ac, av, "t:p:P:", op,
     &l_id);) {
         if (get_flags_from_switch(core, f) == -1)
-        return (optind);
+            return (optind);
     }
 }
 

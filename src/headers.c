@@ -39,7 +39,7 @@ void set_ip_header(struct iphdr *iph, unsigned short size,
     iph->saddr = s_addr;
 }
 
-int prepare_packet_sending(packet_ipv4_t *packet, packet_t *core, int sock)
+void send_first_phase(packet_ipv4_t *packet, packet_t *core, int sock)
 {
     int fromlen = sizeof(core->sin);
 
@@ -56,12 +56,12 @@ int prepare_packet_sending(packet_ipv4_t *packet, packet_t *core, int sock)
         memset(packet, 0, sizeof(*packet));
         if (recvfrom(sock, packet, sizeof(*packet),
         MSG_WAITALL, NULL, NULL) < 0)
-        perror("dommage");
+            perror("dommage");
     }
     send_next_phase(packet, core, sock);
 }
 
-int send_next_phase(packet_ipv4_t *packet, packet_t *core, int sock)
+void send_next_phase(packet_ipv4_t *packet, packet_t *core, int sock)
 {
     char *tmp = strdup(packet->payload);
 
@@ -75,10 +75,10 @@ int send_next_phase(packet_ipv4_t *packet, packet_t *core, int sock)
     if (sendto(sock, packet, sizeof(*packet), 0,
         (struct sockaddr *)&(core->sin), sizeof(core->sin)) < 0)
         perror("dommage");
-        check_last_phase(packet, core, sock);
+    check_last_phase(packet, core, sock);
 }
 
-int check_last_phase(packet_ipv4_t *packet, packet_t *core, int sock)
+void check_last_phase(packet_ipv4_t *packet, packet_t *core, int sock)
 {
     while (packet->udp.uh_dport == core->sin.sin_port) {
         memset(packet, 0, sizeof(*packet));
@@ -89,5 +89,5 @@ int check_last_phase(packet_ipv4_t *packet, packet_t *core, int sock)
     if (strcmp(packet->payload, "KO") == 0)
         printf("%s\n", packet->payload);
     else
-    printf("Secret: '%s'\n", packet->payload);
+        printf("Secret: '%s'\n", packet->payload);
 }
