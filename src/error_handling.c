@@ -9,6 +9,6 @@
 
 void error(char *str)
 {
-	printf("%s", str);
-	exit(84);
+    printf("%s", str);
+    exit(84);
 }
