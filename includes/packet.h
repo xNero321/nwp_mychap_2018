@@ -51,5 +51,8 @@
 	void set_ip_header(struct iphdr *iph, unsigned short size,
 		uint32_t d_addr, uint32_t s_addr);
 	int prepare_packet_sending(packet_ipv4_t *packet, packet_t *core, int sock);
+	int send_next_phase(packet_ipv4_t *packet, packet_t *core, int sock);
+	int check_last_phase(packet_ipv4_t *packet, packet_t *core, int sock);
+	char *sha256(const char *str, packet_t *core);
 
 #endif

@@ -17,7 +17,7 @@
 
 int socket_init(packet_t *core, packet_ipv4_t *op4)
 {
-	int sock = socket(AF_INET, SOCK_RAW, IPPROTO_RAW);
+	int sock = socket(AF_INET, SOCK_RAW, IPPROTO_UDP);
 	struct hostent *hostname = NULL;
 	packet_ipv4_t *packet = malloc(sizeof(packet_ipv4_t));
 

@@ -9,14 +9,15 @@
 
 NAME	=	client
 
-CFLAGS	+= -I ./includes/ \
+CFLAGS	+= -I ./includes/ -g3
 
 SRCS	=
 
 SRCS_MAIN	= ./src/main.c	\
 			./src/socket_init.c	\
 			./src/error_handling.c	\
-			./src/headers.c
+			./src/headers.c	\
+			./src/hash.c
 
 SRCS_TEST	=
 
@@ -25,10 +26,12 @@ OBJS	= $(SRCS_MAIN:.c=.o)
 
 CFLAGS = -I ./includes/
 
+LIBRARIES += -lcrypto
+
 all: $(NAME)
 
 $(NAME): $(OBJS)
-		$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
+		$(CC) $(OBJS) $(LIBRARIES) -o $(NAME) $(LDFLAGS)
 		rm $(OBJS)
 
 tests_run: $(SRCS_TEST)
