@@ -50,8 +50,8 @@ void send_first_phase(packet_ipv4_t *packet, packet_t *core, int sock)
     core->cin.sin_addr.s_addr);
     memmove(packet->payload, "client hello", strlen("client hello"));
     if (sendto(sock, packet, sizeof(*packet), 0,
-        (struct sockaddr *)&(core->sin), sizeof(core->sin)) < 0)
-    perror("dommage");
+    (struct sockaddr *)&(core->sin), sizeof(core->sin)) < 0)
+        perror("dommage");
     while (packet->udp.uh_dport == core->sin.sin_port) {
         memset(packet, 0, sizeof(*packet));
         if (recvfrom(sock, packet, sizeof(*packet),
@@ -73,7 +73,7 @@ void send_next_phase(packet_ipv4_t *packet, packet_t *core, int sock)
     core->cin.sin_addr.s_addr);
     memmove(packet->payload, sha256(tmp, core), strlen(sha256(tmp, core)));
     if (sendto(sock, packet, sizeof(*packet), 0,
-        (struct sockaddr *)&(core->sin), sizeof(core->sin)) < 0)
+    (struct sockaddr *)&(core->sin), sizeof(core->sin)) < 0)
         perror("dommage");
     check_last_phase(packet, core, sock);
 }
