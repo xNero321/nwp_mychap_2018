@@ -26,7 +26,7 @@ void send_first_phase(packet_ipv4_t *packet, packet_t *core, int sock)
     core->cin.sin_addr.s_addr);
     if (memmove(packet->payload, "client hello",
     strlen("client hello")) == NULL)
-        error("memmove can't allocate").
+        error("memmove can't allocate");
     if (sendto(sock, packet, sizeof(*packet), 0,
     (struct sockaddr *)&(core->sin), sizeof(core->sin)) < 0)
         perror("dommage");
