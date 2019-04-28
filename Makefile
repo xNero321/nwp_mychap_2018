@@ -16,7 +16,8 @@ SRCS	=	./src/main.c	\
 		./src/error_handling.c	\
 		./src/headers.c	\
 		./src/hash.c	\
-		./src/send_phase.c
+		./src/send_phase.c	\
+		./src/args_parsing.c
 
 OBJS	= $(SRCS:.c=.o)
 
