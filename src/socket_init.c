@@ -4,6 +4,10 @@
 ** File description:
 ** ip_header.c
 */
+/** \file socket_init.c
+  * \brief socket initialisation file
+  * \author Janote J;
+*/
 #include <sys/socket.h>
 #include <stdlib.h>
 #include <netinet/in.h>

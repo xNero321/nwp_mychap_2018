@@ -4,11 +4,13 @@
 ** File description:
 ** hash256
 */
-
+/** \file hash.c
+  * \brief SHA256 hashing file
+  * \author Janote J;
+*/
 #include <string.h>
 #include <openssl/sha.h>
 #include "packet.h"
-
 /*
 ** PURPOSE : Hash with the SHA256 algorithm in order to tranform a char* in
    a new hash 64 bits

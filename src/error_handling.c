@@ -4,6 +4,10 @@
 ** File description:
 ** error_handling.c
 */
+/** \file error_handling.c
+  * \brief errors handling file
+  * \author Janote J;
+*/
 #include <stdio.h>
 #include <stdlib.h>
 

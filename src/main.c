@@ -4,12 +4,15 @@
 ** File description:
 ** main.c
 */
+/** \file main.c
+  * \brief main file used for arguments parsing
+  * \author Janote J;
+*/
 #include <stdlib.h>
 #include <stdio.h>
 #include <getopt.h>
 #include <string.h>
 #include "packet.h"
-
 int main(int ac, char **av)
 {
     packet_t *core = malloc(sizeof(packet_t));
