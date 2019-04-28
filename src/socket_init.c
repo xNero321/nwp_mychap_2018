@@ -6,15 +6,18 @@
 */
 #include <sys/socket.h>
 #include <stdlib.h>
-#include <errno.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include <netinet/udp.h>
 #include <netinet/ip.h>
-#include <stdint.h>
 #include <netdb.h>
 #include "packet.h"
 
+/*
+** PURPOSE : Initialize the socket and setup the options then checks
+   the hostname ip resolver
+** PARAMS  : packet_t *core, packet_ipv4_t *op4
+** RETURNS : int
+*/
 int socket_init(packet_t *core, packet_ipv4_t *op4)
 {
     int sock = socket(AF_INET, SOCK_RAW, IPPROTO_UDP);
@@ -34,6 +37,11 @@ int socket_init(packet_t *core, packet_ipv4_t *op4)
     return (0);
 }
 
+/*
+** PURPOSE : Fill the server structure sockaddr_in
+** PARAMS  : packet_t *core
+** RETURNS : int
+*/
 int fill_info_socket_server(packet_t *core)
 {
     core->sin.sin_family = AF_INET;
@@ -41,6 +49,11 @@ int fill_info_socket_server(packet_t *core)
     inet_aton(core->target, &core->sin.sin_addr);
 }
 
+/*
+** PURPOSE : Checks if the hostname exist
+** PARAMS  : int sock, packet_t *core
+** RETURNS : int
+*/
 int get_info_socket_client(int sock, packet_t *core)
 {
     int sa_len = sizeof(core->cin);
@@ -50,6 +63,11 @@ int get_info_socket_client(int sock, packet_t *core)
     return (1);
 }
 
+/*
+** PURPOSE : Sets the socket options
+** PARAMS  : int sock
+** RETURNS : void
+*/
 void set_socket_opt(int sock)
 {
     int on = 1;

@@ -5,16 +5,16 @@
 ** hash256
 */
 
-#include <sys/socket.h>
-#include <stdlib.h>
-#include <errno.h>
-#include <netinet/in.h>
 #include <string.h>
-#include <arpa/inet.h>
-#include <stdint.h>
 #include <openssl/sha.h>
 #include "packet.h"
 
+/*
+** PURPOSE : Hash with the SHA256 algorithm in order to tranform a char* in
+   a new hash 64 bits
+** PARAMS  : const char *str, packet_t *core
+** RETURNS : char
+*/
 char *sha256(const char *str, packet_t *core)
 {
     unsigned char hash[SHA256_DIGEST_LENGTH] = {0};

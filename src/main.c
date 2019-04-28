@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <getopt.h>
 #include <string.h>
-#include <packet.h>
+#include "packet.h"
 
 int main(int ac, char **av)
 {
@@ -30,6 +30,11 @@ int main(int ac, char **av)
     return (0);
 }
 
+/*
+** PURPOSE : Initialise core structure
+** PARAMS  : packet_t *core
+** RETURNS : void
+*/
 void init_packet(packet_t *core)
 {
     core->target = NULL;
@@ -37,6 +42,12 @@ void init_packet(packet_t *core)
     core->password = NULL;
 }
 
+/*
+** PURPOSE : Checks if arguments are correctly given to the program
+   otherwise it will return an error.
+** PARAMS  : packet_t *core
+** RETURNS : int
+*/
 int check_args(packet_t *core)
 {
     if (core->target != NULL && core->port > 0 && core->password != NULL)
@@ -44,6 +55,11 @@ int check_args(packet_t *core)
     return (84);
 }
 
+/*
+** PURPOSE : Takes the parameters with getopt_long and loop on aruments
+** PARAMS  : struct option op[], char **av, packet_t *core, int ac
+** RETURNS : int
+*/
 int get_option(struct option op[], char **av, packet_t *core, int ac)
 {
     int l_id = 0;
@@ -55,9 +71,14 @@ int get_option(struct option op[], char **av, packet_t *core, int ac)
     }
 }
 
+/*
+** PURPOSE : loop on arguments and attribute the right values
+** PARAMS  : packet_t *core, int f
+** RETURNS : int
+*/
 int get_flags_from_switch(packet_t *core, int f)
 {
-    switch(f) {
+    switch (f) {
         case 't': core->target = strdup(optarg);
             break;
         case 'p': core->port = atoi(optarg);

@@ -4,15 +4,15 @@
 ** File description:
 ** ip_header.c
 */
-#include <sys/socket.h>
-#include <stdlib.h>
-#include <errno.h>
-#include <netinet/in.h>
 #include <string.h>
-#include <arpa/inet.h>
-#include <stdint.h>
 #include "packet.h"
 
+/*
+** PURPOSE : Autogenerates function contract comments
+** PARAMS  : struct udphdr *udph, uint16_t s_port,
+   uint16_t d_port, unsigned short size
+** RETURNS : void
+*/
 void set_udp_header(struct udphdr *udph, uint16_t s_port, uint16_t d_port,
     unsigned short size)
 {
@@ -22,6 +22,12 @@ void set_udp_header(struct udphdr *udph, uint16_t s_port, uint16_t d_port,
     udph->uh_ulen = htons(sizeof(struct udphdr) + size);
 }
 
+/*
+** PURPOSE : Fills the IP header using the parameters given to the function
+** PARAMS  : struct iphdr *iph, unsigned short size,
+   uint32_t d_addr, uint32_t s_addr -
+** RETURNS : void
+*/
 void set_ip_header(struct iphdr *iph, unsigned short size,
     uint32_t d_addr, uint32_t s_addr)
 {
@@ -39,6 +45,12 @@ void set_ip_header(struct iphdr *iph, unsigned short size,
     iph->saddr = s_addr;
 }
 
+/*
+** PURPOSE : Fills udp and ip header and send the first phase
+   with "client hello" then receive the server packet
+** PARAMS  : packet_ipv4_t *packet, packet_t *core, int sock
+** RETURNS : void
+*/
 void send_first_phase(packet_ipv4_t *packet, packet_t *core, int sock)
 {
     int fromlen = sizeof(core->sin);
@@ -61,6 +73,12 @@ void send_first_phase(packet_ipv4_t *packet, packet_t *core, int sock)
     send_next_phase(packet, core, sock);
 }
 
+/*
+** PURPOSE : After receveing the server packet, concat the server payload with
+  the password given in argument then send it back hashed to the server
+** PARAMS  : packet_ipv4_t *packet, packet_t *core, int sock
+** RETURNS : void
+*/
 void send_next_phase(packet_ipv4_t *packet, packet_t *core, int sock)
 {
     char *tmp = strdup(packet->payload);
@@ -78,6 +96,12 @@ void send_next_phase(packet_ipv4_t *packet, packet_t *core, int sock)
     check_last_phase(packet, core, sock);
 }
 
+/*
+** PURPOSE : After receiving the last server packet just checks if the server
+   acknoledge the handshake thus prints the secret
+** PARAMS  : packet_ipv4_t *packet, packet_t *core, int sock
+** RETURNS : void
+*/
 void check_last_phase(packet_ipv4_t *packet, packet_t *core, int sock)
 {
     while (packet->udp.uh_dport == core->sin.sin_port) {
