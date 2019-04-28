@@ -50,10 +50,6 @@
         unsigned short size);
     void set_ip_header(struct iphdr *iph, unsigned short size,
         uint32_t d_addr, uint32_t s_addr);
-    void send_first_phase(packet_ipv4_t *packet, packet_t *core,
-        int sock);
-    void send_next_phase(packet_ipv4_t *packet, packet_t *core, int sock);
-    void check_last_phase(packet_ipv4_t *packet, packet_t *core, int sock);
 //-------------------- main.c ---------------------
     void init_packet(packet_t *core);
     int check_args(packet_t *core);
@@ -64,4 +60,9 @@
     int fill_info_socket_server(packet_t *core);
     int get_info_socket_client(int sock, packet_t *core);
     void set_socket_opt(int sock);
+//------------------ send_phase.c --------------------
+void send_first_phase(packet_ipv4_t *packet, packet_t *core,
+    int sock);
+void send_next_phase(packet_ipv4_t *packet, packet_t *core, int sock);
+void check_last_phase(packet_ipv4_t *packet, packet_t *core, int sock);
 #endif
