@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2018
 ** NWP_mychap_2018
 ** File description:
-** main.c
+** args_parsing.c
 */
 /** \file args_parsing.c
   * \brief file used for arguments parsing
