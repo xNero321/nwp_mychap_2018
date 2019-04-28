@@ -8,6 +8,8 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/dd835695f2204829995675cb9a38e645)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=xNero321/nwp_mychap_2018&amp;utm_campaign=Badge_Grade)
 
+[![CircleCI](https://circleci.com/gh/xNero321/nwp_mychap_2018.svg?style=svg)](https://circleci.com/gh/xNero321/nwp_mychap_2018)
+
 ## Requirement
 
 - GNU Make 4.2.1
