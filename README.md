@@ -14,6 +14,8 @@
 
 - GNU Make 4.2.1
 
+________________________________
+
 ## Purpose
 
 This project is based on an authentification using a handshake by UDP protocol.
@@ -41,15 +43,21 @@ This is how this project work :
 - The server will send the password if the hash given is correct otherwise
 it will send 'KO'.
 
+________________________________
+
 ## Usage
 	USAGE: sudo ./client -t <target> -p <port> -P <password>
         target      server hostname or ip address
         port        server port used to send packet
         password    waited password to authetificate to the server
 
+________________________________
+
 ## Codacy analysis
 
 This project use Codacy analysis, to see the project analysis
+
+________________________________
 
 ## CI/CD Implementation [:WIP]
 
@@ -59,6 +67,8 @@ in the `.circleci/config.yml` file composed of 1 stages/jobs.
 PIPELINE:
 
 - Build of the source code using EPITECH docker image
+
+________________________________
 
 ## Doxygen
 
