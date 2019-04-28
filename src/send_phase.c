@@ -6,7 +6,7 @@
 */
 /** \file send_phase.c
   * \brief packet sending and receive file
-  * \author Janote J;
+  * \author Janote J.
 */
 #include <string.h>
 #include "packet.h"

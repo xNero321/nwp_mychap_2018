@@ -6,7 +6,7 @@
 */
 /** \file socket_init.c
   * \brief socket initialisation file
-  * \author Janote J;
+  * \author Janote J.
 */
 #include <sys/socket.h>
 #include <stdlib.h>

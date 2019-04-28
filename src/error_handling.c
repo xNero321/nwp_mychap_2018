@@ -6,7 +6,7 @@
 */
 /** \file error_handling.c
   * \brief errors handling file
-  * \author Janote J;
+  * \author Janote J.
 */
 #include <stdio.h>
 #include <stdlib.h>

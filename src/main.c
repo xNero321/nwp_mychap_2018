@@ -6,7 +6,7 @@
 */
 /** \file main.c
   * \brief main file used for arguments parsing
-  * \author Janote J;
+  * \author Janote J.
 */
 #include <stdlib.h>
 #include <stdio.h>

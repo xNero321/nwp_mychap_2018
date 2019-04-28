@@ -6,7 +6,7 @@
 */
 /** \file hash.c
   * \brief SHA256 hashing file
-  * \author Janote J;
+  * \author Janote J.
 */
 #include <string.h>
 #include <openssl/sha.h>

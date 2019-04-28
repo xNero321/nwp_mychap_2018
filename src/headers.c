@@ -6,7 +6,7 @@
 */
 /** \file headers.c
   * \brief UDP and IP header fills
-  * \author Janote J;
+  * \author Janote J.
 */
 #include <string.h>
 #include "packet.h"
