@@ -28,13 +28,13 @@ This is how this project work :
 
 - The server send back 10 random bytes of the same IP adress, port.
 
-### Phase 3
+### Step 3
 
 - Receiving the server packet and refill the IP and UDP headers.
 - Use SHA256 to hash the response + the password authentification.
 - Send the last packet with the hash from the last iteration.
 
-### Phase 4
+### Step 4
 
 - The server will send the password if the hash given is correct otherwise
 it will send 'KO'.
@@ -56,7 +56,7 @@ in the `.circleci/config.yml` file composed of 1 stages/jobs.
 
 PIPELINE:
 
-- Build of the source code using gcc docker image
+- Build of the source code using EPITECH docker image
 
 ## Doxygen
 
