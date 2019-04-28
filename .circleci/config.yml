@@ -13,6 +13,3 @@ jobs:
       - run:
           name: Checking artifact
           command: ls client
-      - run:
-          name: Testing build project
-          command: sudo ./client -t localhost -p 4242 -P epitech
