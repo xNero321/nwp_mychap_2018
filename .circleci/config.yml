@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: gcc
+      - image: epitechcontent/epitest-docker
 
     steps:
       - checkout
@@ -13,3 +13,8 @@ jobs:
       - run:
           name: Checking artifact
           command: ls client
+      - run:
+          name: Testing build project
+          command: |
+            docker run -V $PWD:/app epitechcontent/epitest-docker bash -c "cd app && make re"
+            sudo ./client -t localhost -p 4242 -P epitech
