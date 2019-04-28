@@ -11,18 +11,13 @@ NAME	=	client
 
 CFLAGS	+= -I ./includes/ -g3
 
-SRCS	=
+SRCS	=	./src/main.c	\
+		./src/socket_init.c	\
+		./src/error_handling.c	\
+		./src/headers.c	\
+		./src/hash.c
 
-SRCS_MAIN	= ./src/main.c	\
-			./src/socket_init.c	\
-			./src/error_handling.c	\
-			./src/headers.c	\
-			./src/hash.c
-
-SRCS_TEST	=
-
-OBJS	= $(SRCS_MAIN:.c=.o)
-	#$(SRCS_MAIN:.c=.o)
+OBJS	= $(SRCS:.c=.o)
 
 CFLAGS = -I ./includes/
 
