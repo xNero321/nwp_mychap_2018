@@ -19,8 +19,6 @@
 */
 void send_first_phase(packet_ipv4_t *packet, packet_t *core, int sock)
 {
-    int fromlen = sizeof(core->sin);
-
     fill_info_socket_server(core);
     set_udp_header(&packet->udp, core->cin.sin_port, core->port,
     PAYLOAD_SIZE);
