@@ -6,7 +6,9 @@
 
 ![shields.io](https://img.shields.io/badge/docker-v18.06.1-blue.svg?style=for-the-badge)![shields.io](https://img.shields.io/badge/docker--compose-v1.22.0-blue.svg?style=for-the-badge)
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/9d343dad0a334a0ba7f5cbbefc9adcdb)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=xNero321/OOP_arcade_2018&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dd835695f2204829995675cb9a38e645)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=xNero321/nwp_mychap_2018&amp;utm_campaign=Badge_Grade)
+
+[![CircleCI](https://circleci.com/gh/xNero321/nwp_mychap_2018.svg?style=svg)](https://circleci.com/gh/xNero321/nwp_mychap_2018)
 
 ## Requirement
 
